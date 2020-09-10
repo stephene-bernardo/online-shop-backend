@@ -12,8 +12,6 @@ module.exports = async function(pool){
     await testBasketDB(pool, userDB, productDB, basketDB);
 }
 
-
-
 testProductDB = async function (pool, productDB){
     value = await productDB.insert('witcher', 'Games', 'too many witchsss')
     value = await productDB.insert('witchere', 'Games', 'too many witchsss3')
