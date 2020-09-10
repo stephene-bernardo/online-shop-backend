@@ -25,6 +25,17 @@ CREATE TABLE IF NOT EXISTS "user"(
 );
 `
 
+initializedBasketTable = `
+CREATE TABLE IF NOT EXISTS basket(
+    ID SERIAL PRIMARY KEY,
+    ProductID INT,
+    UserID INT,
+    CONSTRAINT fk_product FOREIGN KEY (ProductID) REFERENCES product(ID),
+    CONSTRAINT fk_user FOREIGN KEY (UserID) REFERENCES "user"(UserID)
+
+);
+`
+
 ;(async ()=>{
     let productTableCreationRespond = await new Promise(resolve => {
         pool.query(intializedProductTable, (err, res) => {
@@ -36,8 +47,15 @@ CREATE TABLE IF NOT EXISTS "user"(
             resolve(res);
         });
     })
+
+    let basketTableCreationRespond = await new Promise(resolve => {
+        pool.query(initializedBasketTable, (err, res) => {
+            resolve(res);
+        });
+    })
     console.log(productTableCreationRespond) 
     console.log(userTableCreationRespond)
+    console.log(basketTableCreationRespond)
     await testQueries(pool)
 })()
 
