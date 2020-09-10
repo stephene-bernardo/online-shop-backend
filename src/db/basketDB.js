@@ -2,8 +2,6 @@ module.exports = function(pool){
     this.pool = pool;
 
     this.insert = function(userId, productId){
-        let result = 0;
-        
         return new Promise(resolve => {
             this.pool.query('INSERT INTO basket(userId, productid) VALUES($1,$2) Returning id', 
             [userId, productId], (err,res)=>  {
