@@ -21,7 +21,6 @@ module.exports = function(pool){
     }
 
     this.findByUserId = function(id) {
-
         let query = `
             SELECT basket.id, product.ID as productID ,product.name, product.type, product.description FROM basket 
             INNER JOIN product ON basket.productID=product.ID

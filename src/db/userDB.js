@@ -12,7 +12,6 @@ module.exports = function(pool){
         });
     }
 
-
     this.authenticate = function(username, password) {
         return new Promise((resolve, reject) => {
             this.pool.query(`SELECT * FROM "user" WHERE LoginName='${username}' and Password='${password}'`, (err, res) =>  {
