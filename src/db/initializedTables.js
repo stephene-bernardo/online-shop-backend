@@ -26,20 +26,29 @@ CREATE TABLE IF NOT EXISTS basket(
 `
 
 module.exports = async function(pool){
-    let productTableCreationRespond = await initializedTable(pool, "Product")
-    let userTableCreationRespond = await initializedTable(pool, "User")
+    let deleteBasketQuery = 'DROP TABLE IF EXISTS basket'
+    let deleteProductQuery = 'DROP TABLE IF EXISTS product'
+    let deleteUserQuery = 'DROP TABLE IF EXISTS "user"'
+    let deleteBasketTable = await initializedTable(pool, deleteBasketQuery, "Basket Table is Deleted")
+    let deleteUserTable = await initializedTable(pool, deleteUserQuery, "User Table is Deleted")
+    let deleteProductTable = await initializedTable(pool, deleteProductQuery, "Product Table is Deleted")
+    console.log(deleteBasketTable)
+    console.log(deleteUserTable)
+    console.log(deleteProductTable)
 
-    let basketTableCreationRespond = await initializedTable(pool, "Basket");
+    let productTableCreationRespond = await initializedTable(pool, intializedProductTable, "Product Table is Initialized")
+    let userTableCreationRespond = await initializedTable(pool,initializedUserTable, "User Table is Initialized")
+    let basketTableCreationRespond = await initializedTable(pool, initializedBasketTable, "Basket Table is Initialized");
     console.log(productTableCreationRespond) 
     console.log(userTableCreationRespond)
     console.log(basketTableCreationRespond)
 }
 
-initializedTable = function (pool, name) {
+initializedTable = function (pool, query,name) {
     return new Promise(resolve => {
-        pool.query(initializedBasketTable, (err, res) => {
+        pool.query(query, (err, res) => {
             if(res){
-                resolve(`${name} Table is Initialized`)
+                resolve(`${name}`)
             }
         });
     });
