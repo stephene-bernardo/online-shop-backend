@@ -29,7 +29,7 @@ module.exports = function(pool){
     }
 
     this.findByName = function(name) {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             this.pool.query(`SELECT * FROM product WHERE name=\'${name}\'`, (err, res) =>  {
                 resolve(res.rows);
             }) 
