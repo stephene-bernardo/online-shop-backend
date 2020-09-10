@@ -1,7 +1,7 @@
-const ProductDB = require('./productDB')
-
+const ProductDB = require('./productDB');
+const UserDB = require('./userDB');
 testProductDB = async function (pool){
-    let productTableCreationRespond = await new Promise(resolve => {
+    await new Promise(resolve => {
         pool.query('DELETE FROM product', (err, res) => {
             resolve(res);
         });
@@ -25,6 +25,25 @@ testProductDB = async function (pool){
     console.log(valueFindByName)
 }
 
+testUserDB = async function(pool){
+    await new Promise(resolve => {
+        pool.query('DELETE FROM "user"', (err, res) => {
+            resolve(res);
+        });
+    })
+
+    let userDB = new UserDB(pool);
+    await userDB.insert("johndoe15", "secretdoe")
+    await userDB.insert("slow5", "fast")
+
+    let authorized = await userDB.authenticate("johndoe15", "secretdoe")
+    console.log(authorized)
+    let notAuthorized = await userDB.authenticate("johndoe15", "secretdo")
+    console.log(notAuthorized)
+    
+}
+
 module.exports = async function(pool){
   await testProductDB(pool);
+  await testUserDB(pool);
 }

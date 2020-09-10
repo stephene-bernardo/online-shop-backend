@@ -17,7 +17,13 @@ CREATE TABLE IF NOT EXISTS product(
     Description VARCHAR(100)
 );
 `
-
+initializedUserTable = `
+CREATE TABLE IF NOT EXISTS "user"(
+    UserID SERIAL PRIMARY KEY,
+    LoginName VARCHAR(20),
+    Password VARCHAR(20)
+);
+`
 
 ;(async ()=>{
     let productTableCreationRespond = await new Promise(resolve => {
@@ -25,7 +31,13 @@ CREATE TABLE IF NOT EXISTS product(
             resolve(res);
         });
     })
+    let userTableCreationRespond = await new Promise(resolve => {
+        pool.query(initializedUserTable, (err, res) => {
+            resolve(res);
+        });
+    })
     console.log(productTableCreationRespond) 
+    console.log(userTableCreationRespond)
     await testQueries(pool)
 })()
 
