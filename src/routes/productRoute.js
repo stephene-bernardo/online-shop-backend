@@ -9,6 +9,13 @@ module.exports = function(pool){
         res.json({id: result});
     })
     
+
+    router.get('/type', async function(req, res){
+        let result = []
+        result = await productDB.findTypes();
+        res.json(result);
+    })
+
     router.get('/:id', async function(req, res){
         let result = await productDB.findById(req.params.id);
         res.json(result);
@@ -16,14 +23,20 @@ module.exports = function(pool){
     
     router.get('', async function(req, res){
         let result = []
-        if(req.query.name){
-            console.log(req.query.name)
+        if(req.query.name && req.query.type){
+            result = await productDB.find(req.query.name, req.query.type)
+        }
+        else if(req.query.name){
             result = await productDB.findByName(req.query.name);
+        }
+        else if(req.query.type){
+            result = await productDB.findByType(req.query.type);
         }else {
             result = await productDB.findAll();
         } 
         res.json(result);
     })
+
 
     return router;
 };

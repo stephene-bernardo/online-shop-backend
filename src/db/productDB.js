@@ -30,7 +30,34 @@ module.exports = function(pool){
 
     this.findByName = function(name) {
         return new Promise((resolve, reject) => {
-            this.pool.query(`SELECT * FROM product WHERE name=\'${name}\'`, (err, res) =>  {
+            let query = `SELECT * FROM product WHERE name LIKE '${name}%';`
+            this.pool.query(query, (err, res) =>  {
+                resolve(res.rows);
+            }) 
+        })
+    }
+
+    this.findByType = function(type) {
+        return new Promise((resolve, reject) => {
+            this.pool.query(`SELECT * FROM product WHERE type=\'${type}\'`, (err, res) =>  {
+                resolve(res.rows);
+            }) 
+        })
+    }
+
+    this.find = function(name, type) {
+        let query = `SELECT * FROM product WHERE name LIKE '${name}%' AND type LIKE '${type}%';`
+        return new Promise((resolve, reject) => {
+            this.pool.query(query, (err, res) =>  {
+                resolve(res.rows);
+            }) 
+        })
+    }
+
+    this.findTypes = function(){
+        let query = `SELECT distinct(type) FROM product;`
+        return new Promise((resolve, reject) => {
+            this.pool.query(query, (err, res) =>  {
                 resolve(res.rows);
             }) 
         })
