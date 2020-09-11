@@ -8,6 +8,7 @@ const basketRoute = require('./src/routes/basketRoute')
 const express = require('express')
 const app = express()
 const port = 3000
+var cors = require('cors');
 
 const pool = new Pool({
     user: 'postgres',
@@ -20,6 +21,7 @@ const pool = new Pool({
 ;(async ()=>{
     await initializedTables(pool);
     app.use(express.json());
+    app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
     app.use('/product', productRoute(pool));
     app.use('/user', userRoute(pool))
     app.use('/basket', basketRoute(pool))

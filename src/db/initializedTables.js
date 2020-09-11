@@ -42,6 +42,52 @@ module.exports = async function(pool){
     console.log(productTableCreationRespond) 
     console.log(userTableCreationRespond)
     console.log(basketTableCreationRespond)
+
+
+    console.log(await insertdefaultProducts(pool));
+    console.log(await insertDefaultUser(pool));
+}
+
+insertDefaultUser = function(pool){
+    let defualtUserQuery= `
+        INSERT INTO "user" (LoginName, Password) VALUES
+        ('brightbats', 'secret'),
+        ('shrewdlyrically', 'hidden'),
+        ('remorsefulrebel', 'password'),
+        ('reassuringhug', '12345'),
+        ('positiveproblem', 'secure'),
+        ('attractivemap', 'superSecureP@ssword')
+    `;
+
+    return new Promise(resolve => {
+        pool.query(defualtUserQuery, (err, res) => {
+            if(res){
+                resolve(`inserted default user entries.`)
+            }
+        });
+    });
+}
+
+insertdefaultProducts = function(pool){
+    let defaultProductsQuery = `
+        INSERT INTO product (name, type, description) VALUES
+        ('Tekken ','Games', 'is a Japanese media franchise centered on a series of fighting video.'),
+        ('Suikoden','Games', ' is a role-playing video game series originally created by Yoshitaka Murayama.'),
+        ('Final Fantasy VII','Games','is a 1997 role-playing video game developed by Square for the PlayStation console. '),
+        ('Sunflower','Music', 'is a song performed by American rapper Post Malone and American singer Swae Lee.'),
+        ('Drops of Jupiter ','Music', ' is a song written and recorded by American rock band Train. '),
+        ('Stuck on You','Music', 'is a song written by and originally recorded by Lionel Richie.'),
+        ('Don Quixote','Books','The Ingenious Gentleman Don Quixote of La Mancha'),
+        ('Adventures of Huckleberry Finn','Books', ' is a novel by Mark Twain, first published in the United Kingdom in December 1884'),
+        ('Moby Dick','Books', 'is an 1851 novel by American writer Herman Melville. ')
+    `
+    return new Promise(resolve => {
+        pool.query(defaultProductsQuery, (err, res) => {
+            if(res){
+                resolve(`inserted default product entries.`)
+            }
+        });
+    });
 }
 
 initializedTable = function (pool, query,name) {
