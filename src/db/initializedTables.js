@@ -19,9 +19,9 @@ CREATE TABLE IF NOT EXISTS basket(
     ID SERIAL PRIMARY KEY,
     ProductID INT,
     UserID INT,
+    Quantity INT,
     CONSTRAINT fk_product FOREIGN KEY (ProductID) REFERENCES product(ID),
     CONSTRAINT fk_user FOREIGN KEY (UserID) REFERENCES "user"(UserID)
-
 );
 `
 

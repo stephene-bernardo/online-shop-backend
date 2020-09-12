@@ -1,10 +1,10 @@
 module.exports = function(pool){
     this.pool = pool;
 
-    this.insert = function(userId, productId){
+    this.insert = function(userId, productId, quantity){
         return new Promise(resolve => {
-            this.pool.query('INSERT INTO basket(userId, productid) VALUES($1,$2) Returning id', 
-            [userId, productId], (err,res)=>  {
+            this.pool.query('INSERT INTO basket(userId, productid, quantity) VALUES($1,$2, $3) Returning id', 
+            [userId, productId, quantity], (err,res)=>  {
                 resolve(res.rows[0].id);
             })
         });
@@ -20,7 +20,7 @@ module.exports = function(pool){
 
     this.findByUserId = function(id) {
         let query = `
-            SELECT basket.id, product.ID as productID ,product.name, product.type, product.description FROM basket 
+            SELECT basket.id, product.ID as productID ,product.name, product.type, product.description, basket.quantity FROM basket 
             INNER JOIN product ON basket.productID=product.ID
             INNER JOIN "user" ON basket.UserID="user".UserID
             WHERE "user".UserID=${id}

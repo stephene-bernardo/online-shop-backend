@@ -6,7 +6,7 @@ module.exports = function(pool) {
     let basketDB = new BasketDB(pool);
 
     router.post('', async function(req, res) {
-        let result = await basketDB.insert(req.body.userid, req.body.productid);
+        let result = await basketDB.insert(req.body.userid, req.body.productid, req.body.quantity);
         res.json(result);
     })
     
