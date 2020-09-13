@@ -10,6 +10,14 @@ module.exports = function(pool){
         });
     }
 
+    this.remove = function(id){
+        return new Promise(resolve => {
+            this.pool.query(`DELETE FROM basket WHERE id=${id}`, (err,res)=>  {
+                resolve({"response": "row deleted"});
+            })
+        });
+    }
+
     this.findAll = function(){
         return new Promise((resolve) => {
             this.pool.query('SELECT * FROM basket', (err,res)=>  {

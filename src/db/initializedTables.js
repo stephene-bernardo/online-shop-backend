@@ -51,7 +51,8 @@ module.exports = async function(pool){
 insertDefaultUser = function(pool){
     let defualtUserQuery= `
         INSERT INTO "user" (LoginName, Password) VALUES
-        ('brightbats', 'secret'),
+        ('
+        brightbats', 'secret'),
         ('shrewdlyrically', 'hidden'),
         ('remorsefulrebel', 'password'),
         ('reassuringhug', '12345'),

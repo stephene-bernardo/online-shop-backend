@@ -20,5 +20,10 @@ module.exports = function(pool) {
         res.json(result)
     })
 
+    router.delete('/:id', async function(req, res){
+        let result = await basketDB.remove(req.params.id);
+        res.json(result);
+    })
+
     return router;
 }
