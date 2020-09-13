@@ -36,7 +36,13 @@ const pool = new Pool({
 
 const userDB = new UserDB(pool);
 ;(async ()=>{
-    app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+  
+    app.use(require('express-session')({ 
+        secret: 'keyboard cat', resave: false, saveUninitialized: false,
+        cookie : {
+            sameSite: 'none', // THIS is the config you are looing for.
+        }
+    }));
     app.use(passport.initialize());
     app.use(passport.session());
     passport.use(new Strategy(
