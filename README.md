@@ -10,9 +10,9 @@
 |ENABLE_DELETION_OF_DB_DATA|Delete current Database data| true|
 |ENABLE_CREATION_OF_SAMPLE_DATA|Create Sample Data|true| 
 ## Requirements 
-**postgres** database must be running. You could specify different database by change its environment variable.
+**Postgres** database must be running. The preferred version would be 12. You could specify different database parameter by change the environment variable when running the application.
 
-**node** must be installed preferred version would be 12.18.3
+**Node** must be installed preferred version would be 12.18.3
 
 ## setting up and running backend locally
 
