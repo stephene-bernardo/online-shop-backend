@@ -57,14 +57,10 @@ const userDB = new UserDB(pool);
     app.use(passport.session());
     passport.use(new Strategy(
         async function(username, password, cb) {
-            console.log(username);
           let user = await userDB.authenticate(username, password);
-      
           if(!user){
             return cb(null, false);
           }
-          console.log('checking user')
-          console.log(user)
           return cb(null, user);
       
     }));
