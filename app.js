@@ -36,19 +36,22 @@ const pool = new Pool({
 
 const userDB = new UserDB(pool);
 ;(async ()=>{
-  
-    let sessionConfig = { 
-        secret: 'keyboard cat', resave: false, saveUninitialized: false,
-        cookie : {
-            sameSite: 'none',
-        }
-    }
 
     if (process.env.NODE_ENV === 'production') {
-        app.set('trust proxy', 1);
-        sessionConfig.cookie.secure = true;
+        app.use(require('express-session')({ 
+            secret: 'keyboard cat', resave: false, saveUninitialized: false,
+            cookie : {
+                sameSite: 'none',
+                secure: true
+            }
+        }));
+    } 
+    else {
+        app.use(require('express-session')({ 
+            secret: 'keyboard cat', resave: false, saveUninitialized: false,
+        }));
     }
-    app.use(require('express-session')(sessionConfig));
+    
     app.use(passport.initialize());
     app.use(passport.session());
     passport.use(new Strategy(
