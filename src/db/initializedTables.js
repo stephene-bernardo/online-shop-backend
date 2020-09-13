@@ -98,6 +98,9 @@ insertdefaultProducts = function(pool){
 initializedTable = function (pool, query,name) {
     return new Promise(resolve => {
         pool.query(query, (err, res) => {
+            if(err){
+                console.log(err);
+            }
             if(res){
                 resolve(`${name}`)
             }

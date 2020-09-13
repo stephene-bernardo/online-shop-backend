@@ -30,7 +30,6 @@ const pool = new Pool({
 })
 
 ;(async ()=>{
-
     await initializedTables(pool, ENABLE_DELETION_OF_DB_DATA, ENABLE_CREATION_OF_SAMPLE_DATA);
     app.use(express.json());
     app.use(cors({credentials: true, origin: ONLINE_SHOP_FRONTEND_URL}));
