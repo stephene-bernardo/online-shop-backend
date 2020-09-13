@@ -10,9 +10,9 @@
 |ENABLE_DELETION_OF_DB_DATA|Delete current Database data| true|
 |ENABLE_CREATION_OF_SAMPLE_DATA|Create Sample Data|true| 
 ## Requirements 
-postgres database must be running. You could specify different database by change its environment variable.
+**postgres** database must be running. You could specify different database by change its environment variable.
 
-node must be installed preferred version would be 12.18.3
+**node** must be installed preferred version would be 12.18.3
 
 ## setting up and running backend locally
 
@@ -28,7 +28,7 @@ node app.js
 the application would run by default in localhost:3000
 
 ## Using default Credentials when ENABLE_CREATION_OF_SAMPLE_DATA is enabled
-#### Listed Credentials are available.
+#### Listed Credentials would be available.
 |Username|Password|
 |--------|--------|
 |brightbats|secret|
