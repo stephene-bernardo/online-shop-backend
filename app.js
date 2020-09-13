@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000
 const POSTGRES_USER = process.env.POSTGRES_USER || 'postgres'
 const POSTGRES_DB = process.env.POSTGRES_DB || 'postgres'
 const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD || 'password'
-const POSTGRES_HOST = process.env.POSSTGRES_HOST || '127.0.0.1';
+const POSTGRES_HOST = process.env.POSTGRES_HOST || '127.0.0.1';
 const POSTGRES_PORT = process.env.POSTGRES_PORT ||  5432;
 
 const ONLINE_SHOP_FRONTEND_URL = process.env.ONLINE_SHOP_FRONTEND_URL || 'http://localhost:4200'
