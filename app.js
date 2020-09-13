@@ -41,6 +41,7 @@ const userDB = new UserDB(pool);
         secret: 'keyboard cat', resave: false, saveUninitialized: false,
         cookie : {
             sameSite: 'none', // THIS is the config you are looing for.
+            secure: true
         }
     }));
     app.use(passport.initialize());
