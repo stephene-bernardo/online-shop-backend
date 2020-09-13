@@ -11,7 +11,6 @@ module.exports = function(pool) {
     })
     
     router.get('', async function(req, res){
-        console.log("some request")
         let result = await userDB.authenticate(req.query.username, req.query.password);
         res.json(result);
     })

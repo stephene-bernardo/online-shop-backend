@@ -25,17 +25,19 @@ CREATE TABLE IF NOT EXISTS basket(
 );
 `
 
-module.exports = async function(pool){
-    let deleteBasketQuery = 'DROP TABLE IF EXISTS basket'
-    let deleteProductQuery = 'DROP TABLE IF EXISTS product'
-    let deleteUserQuery = 'DROP TABLE IF EXISTS "user"'
-    let deleteBasketTable = await initializedTable(pool, deleteBasketQuery, "Basket Table is Deleted")
-    let deleteUserTable = await initializedTable(pool, deleteUserQuery, "User Table is Deleted")
-    let deleteProductTable = await initializedTable(pool, deleteProductQuery, "Product Table is Deleted")
-    console.log(deleteBasketTable)
-    console.log(deleteUserTable)
-    console.log(deleteProductTable)
-
+module.exports = async function(pool, isDeletionOfDataEnabled, isCreationOfSampleDataEnabled){
+    if(isDeletionOfDataEnabled === 'true'){
+        let deleteBasketQuery = 'DROP TABLE IF EXISTS basket'
+        let deleteProductQuery = 'DROP TABLE IF EXISTS product'
+        let deleteUserQuery = 'DROP TABLE IF EXISTS "user"'
+        let deleteBasketTable = await initializedTable(pool, deleteBasketQuery, "Basket Table is Deleted")
+        let deleteUserTable = await initializedTable(pool, deleteUserQuery, "User Table is Deleted")
+        let deleteProductTable = await initializedTable(pool, deleteProductQuery, "Product Table is Deleted")
+        console.log(deleteBasketTable)
+        console.log(deleteUserTable)
+        console.log(deleteProductTable)
+    }
+    
     let productTableCreationRespond = await initializedTable(pool, intializedProductTable, "Product Table is Initialized")
     let userTableCreationRespond = await initializedTable(pool,initializedUserTable, "User Table is Initialized")
     let basketTableCreationRespond = await initializedTable(pool, initializedBasketTable, "Basket Table is Initialized");
@@ -43,9 +45,11 @@ module.exports = async function(pool){
     console.log(userTableCreationRespond)
     console.log(basketTableCreationRespond)
 
-
-    console.log(await insertdefaultProducts(pool));
-    console.log(await insertDefaultUser(pool));
+    if(isCreationOfSampleDataEnabled === 'true'){
+        console.log(await insertdefaultProducts(pool));
+        console.log(await insertDefaultUser(pool));
+    }
+    
 }
 
 insertDefaultUser = function(pool){
