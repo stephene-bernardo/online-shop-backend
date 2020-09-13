@@ -7,8 +7,8 @@
 |POSTGRES_USER         |database user| postgres|
 |POSTGRES_PASSWORD     |database password| password|
 |ONLINE_SHOP_FRONTEND_URL|Online Shop frontend url| http://localhost:4200|
-|ENABLE_DELETION_OF_DB_DATA|Delete current Database data| true|
-|ENABLE_CREATION_OF_SAMPLE_DATA|Create Sample Data|true| 
+|ENABLE_DELETION_OF_DB_DATA|Delete current Database data when set to true| false|
+|ENABLE_CREATION_OF_SAMPLE_DATA|Create Sample Data when set to true|false| 
 ## Requirements 
 **Postgres** database must be running. The preferred version would be 12. You could specify different database parameter by change the environment variable when running the application.
 
@@ -23,7 +23,7 @@ npm install
 
 #### run the application
 ```
-node app.js
+npm run start
 ```
 the application would run by default in localhost:3000
 

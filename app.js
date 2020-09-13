@@ -23,8 +23,8 @@ const POSTGRES_PORT = process.env.POSTGRES_PORT ||  5432;
 
 const ONLINE_SHOP_FRONTEND_URL = process.env.ONLINE_SHOP_FRONTEND_URL || 'http://localhost:4200'
 
-const ENABLE_DELETION_OF_DB_DATA = process.env.ENABLE_DELETION_OF_DB_DATA || 'true';
-const ENABLE_CREATION_OF_SAMPLE_DATA = process.env.ENABLE_CREATION_OF_SAMPLE_DATA || 'true';
+const ENABLE_DELETION_OF_DB_DATA = process.env.ENABLE_DELETION_OF_DB_DATA || 'false';
+const ENABLE_CREATION_OF_SAMPLE_DATA = process.env.ENABLE_CREATION_OF_SAMPLE_DATA || 'false';
 const pool = new Pool({
     user: POSTGRES_USER,
     host: POSTGRES_HOST,
