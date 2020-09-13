@@ -41,9 +41,13 @@ const userDB = new UserDB(pool);
         secret: 'keyboard cat', resave: false, saveUninitialized: false,
         cookie : {
             sameSite: 'none', // THIS is the config you are looing for.
-            secure: true
         }
     }));
+
+    if (process.env.NODE_ENV === 'production') {
+        app.set('trust proxy', 1); // trust first proxy
+        sessionConfig.cookie.secure = true; // serve secure cookies
+    }
     app.set('trust proxy', 1);
     app.use(passport.initialize());
     app.use(passport.session());
