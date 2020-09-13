@@ -25,9 +25,10 @@ npm install
 ```
 node app.js
 ```
-the application would run in localhost:3000
+the application would run by default in localhost:3000
 
-## You could login by using the Sample Data when enabled
+## Using default Credentials when ENABLE_CREATION_OF_SAMPLE_DATA is enabled
+#### Listed Credentials are available.
 |Username|Password|
 |--------|--------|
 |brightbats|secret|
