@@ -30,7 +30,7 @@ module.exports = function(pool){
 
     this.findByName = function(name) {
         return new Promise((resolve, reject) => {
-            let query = `SELECT * FROM product WHERE name LIKE '${name}%';`
+            let query = `SELECT * FROM product WHERE name ILIKE '${name}%';`
             this.pool.query(query, (err, res) =>  {
                 resolve(res.rows);
             }) 
@@ -46,7 +46,7 @@ module.exports = function(pool){
     }
 
     this.find = function(name, type) {
-        let query = `SELECT * FROM product WHERE name LIKE '${name}%' AND type LIKE '${type}%';`
+        let query = `SELECT * FROM product WHERE name ILIKE '${name}%' AND type LIKE '${type}%';`
         return new Promise((resolve, reject) => {
             this.pool.query(query, (err, res) =>  {
                 resolve(res.rows);

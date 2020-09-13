@@ -51,8 +51,7 @@ module.exports = async function(pool){
 insertDefaultUser = function(pool){
     let defualtUserQuery= `
         INSERT INTO "user" (LoginName, Password) VALUES
-        ('
-        brightbats', 'secret'),
+        ('brightbats', 'secret'),
         ('shrewdlyrically', 'hidden'),
         ('remorsefulrebel', 'password'),
         ('reassuringhug', '12345'),
@@ -80,7 +79,8 @@ insertdefaultProducts = function(pool){
         ('Stuck on You','Music', 'is a song written by and originally recorded by Lionel Richie.'),
         ('Don Quixote','Books','The Ingenious Gentleman Don Quixote of La Mancha'),
         ('Adventures of Huckleberry Finn','Books', ' is a novel by Mark Twain, first published in the United Kingdom in December 1884'),
-        ('Moby Dick','Books', 'is an 1851 novel by American writer Herman Melville. ')
+        ('Moby Dick','Books', 'is an 1851 novel by American writer Herman Melville. '),
+        ('The Title That Has Thirty Char', 'Books', 'a title that has 30 character in lenght. this helps in testing limit.')
     `
     return new Promise(resolve => {
         pool.query(defaultProductsQuery, (err, res) => {
