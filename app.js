@@ -38,6 +38,7 @@ const userDB = new UserDB(pool);
 ;(async ()=>{
 
     if (process.env.NODE_ENV === 'production') {
+        app.set('trust proxy', 1); 
         app.use(require('express-session')({ 
             secret: 'keyboard cat', resave: false, saveUninitialized: false,
             cookie : {
