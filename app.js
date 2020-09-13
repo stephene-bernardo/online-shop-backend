@@ -17,7 +17,7 @@ const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD || 'password'
 const POSTGRES_HOST = process.env.POSSTGRES_HOST || '127.0.0.1';
 const POSTGRES_PORT = process.env.POSTGRES_PORT ||  5432;
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:4200'
+const ONLINE_SHOP_FRONTEND_URL = process.env.ONLINE_SHOP_FRONTEND_URL || 'http://localhost:4200'
 
 const ENABLE_DELETION_OF_DB_DATA = process.env.ENABLE_DELETION_OF_DB_DATA || 'true';
 const ENABLE_CREATION_OF_SAMPLE_DATA = process.env.ENABLE_CREATION_OF_SAMPLE_DATA || 'true';
@@ -33,7 +33,7 @@ const pool = new Pool({
 
     await initializedTables(pool, ENABLE_DELETION_OF_DB_DATA, ENABLE_CREATION_OF_SAMPLE_DATA);
     app.use(express.json());
-    app.use(cors({credentials: true, origin: FRONTEND_URL}));
+    app.use(cors({credentials: true, origin: ONLINE_SHOP_FRONTEND_URL}));
     app.use('/product', productRoute(pool));
     app.use('/user', userRoute(pool))
     app.use('/basket', basketRoute(pool))
