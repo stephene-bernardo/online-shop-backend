@@ -10,18 +10,27 @@ const app = express()
 const port = 3000
 var cors = require('cors');
 
+
+const POSTGRES_USER = process.env.POSTGRES_USER || 'postgres'
+const POSTGRES_DB = process.env.POSTGRES_DB || 'postgres'
+const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD || 'password'
+const POSTGRES_HOST = process.env.POSSTGRES_HOST || '127.0.0.1';
+const POSTGRES_PORT = process.env.POSTGRES_PORT ||  5432;
+
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:4200'
+
 const pool = new Pool({
-    user: 'postgres',
-    host: '127.0.0.1',
-    database: 'postgres',
-    password: 'password',
-    port: 5432,
+    user: POSTGRES_USER,
+    host: POSTGRES_HOST,
+    database: POSTGRES_DB,
+    password: POSTGRES_PASSWORD,
+    port: POSTGRES_PORT,
 })
 
 ;(async ()=>{
     await initializedTables(pool);
     app.use(express.json());
-    app.use(cors({credentials: true, origin: 'http://localhost:4200'}));
+    app.use(cors({credentials: true, origin: FRONTEND_URL}));
     app.use('/product', productRoute(pool));
     app.use('/user', userRoute(pool))
     app.use('/basket', basketRoute(pool))
